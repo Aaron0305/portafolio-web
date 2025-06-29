@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,23 +7,32 @@ const Header = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [hideHeader, setHideHeader] = useState(false);
+  const [isClient, setIsClient] = useState(false); // Nuevo estado para saber si estamos en el cliente
   const pathname = usePathname();
 
   useEffect(() => {
+    setIsClient(true); // Solo después de montar
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrollY(currentScrollY);
       setIsScrolled(currentScrollY > 50);
+      setHideHeader(currentScrollY > lastScrollY && currentScrollY > 100);
+      setLastScrollY(currentScrollY);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY, isClient]);
 
   const navItems = [
-    { href: "/proyectos", label: "Proyectos" },
+    { href: "/proyects", label: "Proyectos" },
     { href: "/experiencia", label: "Experiencia" },
-    { href: "/blog", label: "Blog" }
+    { href: "/contacto", label: "Contacto" }
   ];
 
   return (
@@ -32,20 +40,21 @@ const Header = () => {
       <header 
         className={`
           fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
-          ${isScrolled 
+          ${isClient && isScrolled 
             ? 'bg-black/20 backdrop-blur-xl border-white/10 shadow-2xl shadow-cyan-500/10' 
             : 'bg-transparent backdrop-blur-sm border-white/5'
           }
           border-b
+          ${isClient && hideHeader ? 'opacity-0 -translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}
         `}
-        style={{
-          transform: `translateY(${scrollY > 100 ? -scrollY * 0.1 : 0}px)`,
-        }}
+        style={isClient ? {
+          transform: `translateY(${hideHeader ? '-3rem' : (scrollY > 100 ? -scrollY * 0.1 : 0)}px)`,
+        } : {}}
       >
         {/* Animated background gradient */}
         <div 
           className="absolute inset-0 opacity-30"
-          style={{
+          style={isClient ? {
             background: `linear-gradient(
               ${90 + scrollY * 0.1}deg, 
               rgba(6, 182, 212, 0.1) 0%, 
@@ -53,7 +62,7 @@ const Header = () => {
               rgba(236, 72, 153, 0.1) 100%
             )`,
             transform: `translateX(${scrollY * 0.2}px)`,
-          }}
+          } : {}}
         />
         
         {/* Glowing border effect */}
