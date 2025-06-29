@@ -3,7 +3,7 @@ import Image from "next/image";
 import SkillsCards from "./components/layout/cards"; 
 import CubeLayout from "./cube-layout";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, ReactNode } from "react";
 import Link from 'next/link';
 import ProjectCard from "./components/layout/ProjectCard";
 import projects from "./components/layout/projectsData";
@@ -26,7 +26,13 @@ import {
 } from "lucide-react";
 
 // Componente para animaciones reutilizables
-const AnimatedSection = ({ children, delay = 0, className = "" }) => {
+interface AnimatedSectionProps {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}
+
+const AnimatedSection = ({ children, delay = 0, className = "" }: AnimatedSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -53,7 +59,7 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({
       ...prev,
@@ -61,7 +67,7 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('');
@@ -81,7 +87,7 @@ const ContactForm = () => {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
