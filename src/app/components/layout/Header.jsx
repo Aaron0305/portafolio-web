@@ -30,9 +30,7 @@ const Header = () => {
   }, [lastScrollY, isClient]);
 
   const navItems = [
-    { href: "/proyects", label: "Proyectos" },
-    { href: "/experiencia", label: "Experiencia" },
-    { href: "/contacto", label: "Contacto" }
+    { href: "/proyects", label: "Proyectos" }
   ];
 
   return (
@@ -152,7 +150,7 @@ const Header = () => {
           {/* Social Icons with magnetic effect */}
           <div className="hidden md:flex items-center space-x-4">
             <a 
-              href="https://linkedin.com/in/tu-perfil" 
+              href="https://www.linkedin.com/in/aar%C3%B3n-estrada-mart%C3%ADnez-94b86b1a8/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group relative p-2 rounded-lg transition-all duration-300 hover:scale-110"
@@ -225,7 +223,7 @@ const Header = () => {
           ))}
           
           <div className="flex space-x-6 pt-8">
-            <a href="https://linkedin.com/in/tu-perfil" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.linkedin.com/in/aar%C3%B3n-estrada-mart%C3%ADnez-94b86b1a8/" target="_blank" rel="noopener noreferrer"
                className="text-white/70 hover:text-blue-400 transition-colors duration-300">
               LinkedIn
             </a>

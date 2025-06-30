@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
-import SkillsCards from "./components/layout/cards"; 
+import SkillsCards from "./components/layout/cards";
 import CubeLayout from "./cube-layout";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, ReactNode } from "react";
+import { useRef, useState, ReactNode, useEffect } from "react";
 import Link from 'next/link';
 import ProjectCard from "./components/layout/ProjectCard";
-import projects from "./components/layout/projectsData";
+import projectsData from "./components/layout/projectsData";
 import { 
   Facebook, 
   Instagram, 
@@ -57,7 +57,7 @@ const ContactForm = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | ''>('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -196,7 +196,7 @@ const ContactInfo = () => {
     {
       icon: Phone,
       title: "Teléfono",
-      value: "+52 (55) 1234-5678",
+      value: "(+52) 7122956288",
       href: "tel:+525512345678",
       color: "green"
     },
@@ -212,31 +212,31 @@ const ContactInfo = () => {
   const socialLinks = [
     {
       icon: Facebook,
-      href: "https://facebook.com",
+      href: "https://www.facebook.com/aron.estrada.1023",
       label: "Facebook",
       color: "bg-blue-600 hover:bg-blue-700"
     },
     {
       icon: Instagram,
-      href: "https://instagram.com",
+      href: "https://www.instagram.com/aaron_es09/",
       label: "Instagram",
       color: "bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:via-red-600 hover:to-yellow-600"
     },
     {
       icon: MessageCircle,
-      href: "https://wa.me/525512345678",
+      href: "https://wa.me/7122956288",
       label: "WhatsApp",
       color: "bg-green-500 hover:bg-green-600"
     },
     {
       icon: Github,
-      href: "https://github.com",
+      href: "https://github.com/Aaron0305",
       label: "GitHub",
       color: "bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/aar%C3%B3n-estrada-mart%C3%ADnez-94b86b1a8/",
       label: "LinkedIn",
       color: "bg-blue-700 hover:bg-blue-800"
     }
@@ -296,15 +296,55 @@ const ContactInfo = () => {
   );
 };
 
+// Interface para los proyectos
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  liveUrl?: string | null;
+  githubUrl?: string;
+  showModal?: boolean;
+  gallery?: {
+    src: string;
+    alt: string;
+    caption: string;
+  }[];
+  features?: string[];
+}
+
 export default function Home() {
-  const currentYear = new Date().getFullYear();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        setIsLoading(true);
+        // Simulamos una carga asíncrona
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setProjects(projectsData as Project[]);
+        setError(null);
+      } catch (err) {
+        console.error("Error loading projects:", err);
+        setError("No se pudieron cargar los proyectos");
+        setProjects([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProjects();
+  }, []); 
 
   return (
     <CubeLayout>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
         className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
       >
         {/* Hero Section Mejorado */}
@@ -312,24 +352,22 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-cyan-600/10 opacity-50"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 relative">
             <div className="text-center">
-              <motion.div 
-                className="relative w-40 h-40 mx-auto mb-8 group"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
-                  <Image
-                    src="/images/aaron.jpg"
-                    alt="Aarón Estrada Martínez - Desarrollador Full Stack"
-                    width={320}
-                    height={320}
-                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                    priority
-                    quality={100}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-transparent to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-                <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+              <motion.div                  
+                className="relative w-40 h-40 mx-auto mb-8 group"                 
+                whileHover={{ scale: 1.05 }}                 
+                transition={{ type: "spring", stiffness: 300 }}               
+              >                 
+                <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">                   
+                  <Image                     
+                    src="/images/aaron.jpg"                     
+                    alt="Aarón Estrada Martínez - Desarrollador Full Stack"                     
+                    width={320}                     
+                    height={320}                     
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"                     
+                    priority                     
+                    quality={100}                    
+                  />                   
+                </div>                 
               </motion.div>
 
               <motion.h1 
@@ -400,7 +438,7 @@ export default function Home() {
                 
                 <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                   <p>
-                    Soy un desarrollador <strong>Full Stack</strong> con más de <strong>1 año de experiencia</strong> creando 
+                    Soy un Estudiante con más de <strong>1 año de experiencia</strong> creando 
                     aplicaciones web modernas y escalables. Mi stack principal incluye <strong>React</strong>, <strong>Next.js</strong>, 
                     <strong>TypeScript</strong>, <strong>Node.js</strong> y <strong>MongoDB</strong>.
                   </p>
@@ -421,11 +459,11 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl">
-                    <h3 className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">5+</h3>
+                  <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-2xl">
+                    <h3 className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">3+</h3>
                     <p className="text-gray-600 dark:text-gray-300 font-medium">Proyectos Completados</p>
                   </div>
-                  <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl">
+                  <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-2xl">
                     <h3 className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">1.5+</h3>
                     <p className="text-gray-600 dark:text-gray-300 font-medium">Años de Experiencia</p>
                   </div>
@@ -485,7 +523,7 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        {/* Projects Section */}
+        {/* Projects Section Mejorada */}
         <AnimatedSection 
           delay={0.4}
           className="py-24 bg-white dark:bg-gray-800"
@@ -499,19 +537,51 @@ export default function Home() {
                 Una selección de mis trabajos más recientes y significativos
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+            
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(3)].map((_, index) => (
+                  <div key={index} className="h-full bg-gray-100 dark:bg-gray-700 rounded-2xl overflow-hidden animate-pulse">
+                    <div className="h-48 bg-gray-200 dark:bg-gray-600"></div>
+                    <div className="p-6 space-y-4">
+                      <div className="h-6 bg-gray-200 dark:bg-gray-600 rounded w-3/4"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-full"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-5/6"></div>
+                      <div className="flex gap-2">
+                        <div className="h-6 w-16 bg-gray-200 dark:bg-gray-600 rounded-full"></div>
+                        <div className="h-6 w-16 bg-gray-200 dark:bg-gray-600 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : error ? (
+              <div className="text-center py-12">
+                <p className="text-red-500 dark:text-red-400 text-lg">{error}</p>
+                <button 
+                  onClick={() => window.location.reload()}
+                  className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  <ProjectCard project={project} />
-                </motion.div>
-              ))}
-            </div>
+                  Reintentar
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.map((project) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    whileHover={{ scale: 1.04, boxShadow: "0 8px 32px rgba(80,80,200,0.15)" }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
+                    viewport={{ once: true }}
+                  >
+                    <ProjectCard project={project} />
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         </AnimatedSection>
 
@@ -532,8 +602,12 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <motion.div 
                 className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
-                whileHover={{ y: -5, scale: 1.02 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                whileHover={{ scale: 1.04, boxShadow: "0 8px 32px rgba(80,80,200,0.15)" }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
+                viewport={{ once: true }}
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Code className="w-8 h-8 text-blue-600 dark:text-blue-400" />
@@ -548,8 +622,12 @@ export default function Home() {
               
               <motion.div 
                 className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
-                whileHover={{ y: -5, scale: 1.02 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                whileHover={{ scale: 1.04, boxShadow: "0 8px 32px rgba(80,80,200,0.15)" }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
+                viewport={{ once: true }}
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Database className="w-8 h-8 text-purple-600 dark:text-purple-400" />
@@ -580,29 +658,26 @@ export default function Home() {
                 ¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad.
               </p>
             </div>
-            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 60 }}
+                viewport={{ once: true }}
+              >
                 <ContactInfo />
-              </div>
-              
-              <div className="order-1 lg:order-2">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 60 }}
+                viewport={{ once: true }}
+              >
                 <ContactForm />
-              </div>
+              </motion.div>
             </div>
           </div>
         </AnimatedSection>
-
-        {/* Footer */}
-        <footer className="bg-gray-900 dark:bg-gray-950 text-white py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <p className="text-gray-400 text-lg">
-                © {currentYear} Aarón Estrada Martínez. Todos los derechos reservados.
-              </p>
-            </div>
-          </div>
-        </footer>
       </motion.div>
     </CubeLayout>
   );

@@ -4,12 +4,12 @@ import Image from "next/image";
 const ProjectCard = ({ project }) => {
   return (
     <div className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-      <div className="relative h-48">
+      <div className="relative h-48 group">
         <Image
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-300 group-hover:scale-110"
         />
       </div>
       <div className="p-6">
