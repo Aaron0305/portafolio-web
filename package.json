@@ -29,5 +29,11 @@
     "eslint-config-next": "15.3.4",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "next-view-transitions": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   }
 }
