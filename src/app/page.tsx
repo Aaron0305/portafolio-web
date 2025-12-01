@@ -337,9 +337,7 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
                 Hola, soy{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 animate-pulse">
-                  Aarón Estrada Martínez
-                </span>
+                <ColourfulText text="Aarón Estrada Martínez" />
               </motion.h1>
 
               <motion.p
