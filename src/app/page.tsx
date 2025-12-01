@@ -21,11 +21,7 @@ import {
   Linkedin,
   ExternalLink,
   Download,
-  Code,
-  Database,
-  Send,
-  User,
-  AtSign
+  Code
 } from "lucide-react";
 
 // Componente para animaciones reutilizables
@@ -52,96 +48,7 @@ const AnimatedSection = ({ children, delay = 0, className = "" }: AnimatedSectio
   );
 };
 
-// Componente de formulario mejorado
-const ContactForm = () => {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | ''>('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormState(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('');
-
-    try {
-      // Usar Web3Forms (servicio gratuito y confiable)
-      // TEMPORAL: Usar clave de prueba mientras configuras la tuya
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '697a62c1-4bbc-4a1b-ab50-16c0051c1be1', // ⚠️ REEMPLAZA ESTO CON TU CLAVE DE https://web3forms.com/
-          name: formState.name,
-          email: formState.email,
-          message: formState.message,
-          subject: `Nuevo mensaje de ${formState.name} desde tu portafolio`,
-          to: 'ryaaron000@gmail.com'
-        }),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setSubmitStatus('success');
-        setFormState({ name: '', email: '', message: '' });
-      } else {
-        // Si Web3Forms falla, intentar con Formspree como respaldo
-        await tryFormspree();
-      }
-    } catch (error) {
-      console.error('Error con Web3Forms:', error);
-      // Intentar con Formspree como respaldo
-      try {
-        await tryFormspree();
-      } catch (formspreeError) {
-        console.error('Error con Formspree:', formspreeError);
-        setSubmitStatus('error');
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // Función de respaldo usando Formspree
-  const tryFormspree = async () => {
-    try {
-      const response = await fetch('https://formspree.io/f/mwkajnkl', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formState,
-          _replyto: 'ryaaron000@gmail.com',
-          _subject: `Nuevo mensaje de ${formState.name} desde tu portafolio`
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormState({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Formspree failed');
-      }
-    } catch (error) {
-      throw error;
-    }
-  };
-};
 
 // Componente de información de contacto mejorado
 const ContactInfo = () => {

@@ -1,7 +1,5 @@
-"use client";
-
-import React, { useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import React from "react";
+import { motion, useMotionValue, useSpring, PanInfo } from "framer-motion";
 
 export const DraggableCardContainer = ({
     children,
@@ -31,7 +29,7 @@ export const DraggableCardBody = ({
     const rotateX = useSpring(0, springConfig);
     const rotateY = useSpring(0, springConfig);
 
-    const handleDrag = (event: any, info: any) => {
+    const handleDrag = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         const rotateXValue = info.offset.y / 10;
         const rotateYValue = info.offset.x / 10;
         rotateX.set(rotateXValue);
