@@ -8,8 +8,7 @@ import { Link } from 'next-view-transitions';
 import ProjectCard from "./components/layout/ProjectCard";
 import projectsData from "./components/layout/projectsData";
 import ColourfulText from "./components/ui/colourful-text";
-import { DraggableCardContainer, DraggableCardBody } from "./components/ui/draggable-card";
-import { BackgroundLines } from "./components/ui/background-lines";
+import CodeEngineerScene from "./components/three/CodeEngineerScene";
 import {
   Facebook,
   Instagram,
@@ -328,13 +327,8 @@ export default function Home() {
                     <h3 className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">3+</h3>
                     <p className="text-gray-600 dark:text-gray-300 font-medium">Proyectos Completados</p>
                   </div>
-                  <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-2xl">
-                    <h3 className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">1.5+</h3>
-                    <p className="text-gray-600 dark:text-gray-300 font-medium">Años de Experiencia</p>
-                  </div>
                 </motion.div>
               </div>
-
               <motion.div
                 className="order-1 lg:order-2 relative"
                 whileInView={{ opacity: 1, x: 0 }}
@@ -342,29 +336,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="relative w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-cyan-600/30 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500"></div>
-
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900/10 to-slate-800/10 backdrop-blur-sm border border-slate-200 dark:border-slate-700">
-                    <Image
-                      src="/images/Data-extraction.gif"
-                      alt="Desarrollo de software"
-                      fill
-                      className="object-contain p-8 transition-all duration-700 group-hover:scale-110"
-                      style={{
-                        filter: 'drop-shadow(0 0 20px rgba(59, 130, 246, 0.3))'
-                      }}
-                    />
-
-                    {/* Efectos visuales mejorados */}
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute top-4 left-4 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                      <div className="absolute top-4 right-4 w-3 h-3 bg-blue-400 rounded-full animate-pulse delay-1000"></div>
-                      <div className="absolute bottom-4 left-4 w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-2000"></div>
-                      <div className="absolute bottom-4 right-4 w-3 h-3 bg-cyan-400 rounded-full animate-pulse delay-3000"></div>
-                    </div>
-                  </div>
-                </div>
+                {/* Sección de animación con three.js */}
+                <CodeEngineerScene />
               </motion.div>
             </div>
           </div>
@@ -387,189 +360,6 @@ export default function Home() {
             <SkillsCards />
           </div>
         </AnimatedSection>
-
-        {/* Draggable Certifications Section */}
-        <AnimatedSection
-          delay={0.35}
-          className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Mis Certificaciones
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-4">
-                Arrastra las tarjetas para explorar mis certificaciones
-              </p>
-            </div>
-
-            <DraggableCardContainer className="relative flex min-h-[600px] w-full items-center justify-center">
-              <p className="absolute top-1/2 mx-auto max-w-2xl -translate-y-3/4 text-center text-xl md:text-2xl font-semibold text-neutral-400 dark:text-neutral-600 px-4">
-                Mueve las tarjetas para ver mis certificaciones profesionales
-              </p>
-
-              {/* Google IT Support */}
-              <DraggableCardBody className="absolute top-10 left-[15%] rotate-[-5deg]">
-                <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                  <BackgroundLines className="h-32 flex items-center justify-center">
-                    <div className="text-center z-10">
-                      <div className="text-2xl font-bold text-gray-800 dark:text-white tracking-tighter">
-                        <span className="text-blue-500">G</span>
-                        <span className="text-red-500">o</span>
-                        <span className="text-yellow-500">o</span>
-                        <span className="text-blue-500">g</span>
-                        <span className="text-green-500">l</span>
-                        <span className="text-red-500">e</span>
-                      </div>
-                    </div>
-                  </BackgroundLines>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                      IT Support Professional
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Google • 2024</p>
-                  </div>
-                </div>
-              </DraggableCardBody>
-
-              {/* Cisco CCNA */}
-              <DraggableCardBody className="absolute top-40 left-[25%] rotate-[-7deg]">
-                <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                  <BackgroundLines className="h-32 flex items-center justify-center">
-                    <div className="text-center z-10">
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 tracking-tighter">
-                        CISCO
-                      </div>
-                    </div>
-                  </BackgroundLines>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                      CCNA: Introducción a las redes
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Cisco • 2025</p>
-                  </div>
-                </div>
-              </DraggableCardBody>
-
-              {/* Google Cloud */}
-              <DraggableCardBody className="absolute top-5 left-[45%] rotate-[8deg]">
-                <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                  <BackgroundLines className="h-32 flex items-center justify-center">
-                    <div className="text-center z-10">
-                      <div className="text-2xl font-bold text-gray-800 dark:text-white tracking-tighter">
-                        <span className="text-blue-500">G</span>
-                        <span className="text-red-500">o</span>
-                        <span className="text-yellow-500">o</span>
-                        <span className="text-blue-500">g</span>
-                        <span className="text-green-500">l</span>
-                        <span className="text-red-500">e</span>
-                        <span className="text-gray-500 dark:text-gray-400 ml-1 text-lg">Cloud</span>
-                      </div>
-                    </div>
-                  </BackgroundLines>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                      Cloud Computing Foundations
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Google Cloud • 2025</p>
-                  </div>
-                </div>
-              </DraggableCardBody>
-
-              {/* Cybersecurity */}
-              <DraggableCardBody className="absolute top-32 left-[60%] rotate-[10deg]">
-                <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                  <BackgroundLines className="h-32 flex items-center justify-center">
-                    <div className="text-center z-10">
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 tracking-tighter">
-                        CISCO
-                      </div>
-                    </div>
-                  </BackgroundLines>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                      Introducción a la Ciberseguridad
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Cisco • 2025</p>
-                  </div>
-                </div>
-              </DraggableCardBody>
-
-              {/* Linux Fundamentals */}
-              <DraggableCardBody className="absolute top-20 right-[25%] rotate-[2deg]">
-                <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                  <BackgroundLines className="h-32 flex items-center justify-center">
-                    <div className="text-center z-10">
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 tracking-tighter">
-                        CISCO
-                      </div>
-                    </div>
-                  </BackgroundLines>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                      Fundamentos de Linux
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Cisco • 2024</p>
-                  </div>
-                </div>
-              </DraggableCardBody>
-
-              {/* IoT */}
-              <DraggableCardBody className="absolute top-24 left-[50%] rotate-[-7deg]">
-                <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                  <BackgroundLines className="h-32 flex items-center justify-center">
-                    <div className="text-center z-10">
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 tracking-tighter">
-                        CISCO
-                      </div>
-                    </div>
-                  </BackgroundLines>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                      Internet de las Cosas
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Cisco • 2025</p>
-                  </div>
-                </div>
-              </DraggableCardBody>
-
-              {/* Security */}
-              <DraggableCardBody className="absolute top-8 left-[35%] rotate-[4deg]">
-                <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                  <BackgroundLines className="h-32 flex items-center justify-center">
-                    <div className="text-center z-10">
-                      <div className="text-2xl font-bold text-gray-800 dark:text-white tracking-tighter">
-                        <span className="text-blue-500">G</span>
-                        <span className="text-red-500">o</span>
-                        <span className="text-yellow-500">o</span>
-                        <span className="text-blue-500">g</span>
-                        <span className="text-green-500">l</span>
-                        <span className="text-red-500">e</span>
-                      </div>
-                    </div>
-                  </BackgroundLines>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                      Seguridad Informática
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Google • 2024</p>
-                  </div>
-                </div>
-              </DraggableCardBody>
-            </DraggableCardContainer>
-
-            <div className="text-center mt-12">
-              <Link
-                href="/certifications"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl gap-2"
-              >
-                Ver Todas las Certificaciones
-                <ExternalLink className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        </AnimatedSection>
-
         {/* Projects Section Mejorada */}
         <AnimatedSection
           delay={0.4}

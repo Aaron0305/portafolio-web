@@ -1,5 +1,6 @@
 import React from 'react';
-import { SiMysql, SiExpress, SiPhp, SiNodedotjs, SiPython, SiMongodb, SiNextdotjs, SiGit } from 'react-icons/si';
+import { SiMysql, SiExpress, SiPhp, SiNodedotjs, SiPython, SiMongodb, SiNextdotjs, SiGit, SiGooglecloud } from 'react-icons/si';
+
 
 const frontendSkills = [
   {
@@ -51,6 +52,7 @@ const frontendSkills = [
   }
 ];
 
+
 const backendSkills = [
   {
     name: 'PHP',
@@ -94,16 +96,24 @@ const backendSkills = [
   }
 ];
 
+
 const learningSkills = [
   {
     name: 'Google Cloud',
-  }
-
-  // Microsoft Azure - Path correcto
-  , {
+    icon: (
+      <SiGooglecloud className="w-10 h-10 text-[#4285F4]" />
+    )
+  },
+  {
     name: 'Microsoft Azure',
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-10 h-10">
+        <path fill="#0078D4" d="M5.483 21.3H24L14.025 4.013l-3.038 8.347 5.836 6.938L5.483 21.3zM13.23 2.7L6.105 8.677 0 19.253h5.505v.014L13.23 2.7z" />
+      </svg>
+    )
   }
 ];
+
 
 const tools = [
   {
@@ -151,10 +161,12 @@ const tools = [
   }
 ];
 
+
 export default function Skills() {
   return (
     <div className="py-10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Frontend Card */}
@@ -179,6 +191,7 @@ export default function Skills() {
             </div>
           </div>
 
+
           {/* Backend Card */}
           <div className="group rounded-3xl p-6 transition-all duration-300 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 backdrop-blur-sm">
             <div className="flex items-center justify-center mb-6">
@@ -201,6 +214,7 @@ export default function Skills() {
             </div>
           </div>
 
+
           {/* Learning Card */}
           <div className="group rounded-3xl p-6 transition-all duration-300 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 backdrop-blur-sm">
             <div className="flex items-center justify-center mb-6">
@@ -222,6 +236,7 @@ export default function Skills() {
               ))}
             </div>
           </div>
+
 
           {/* Tools Card */}
           <div className="group rounded-3xl p-6 transition-all duration-300 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 backdrop-blur-sm">
