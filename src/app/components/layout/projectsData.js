@@ -115,6 +115,68 @@ const projects = [
       "Carga rápida y optimizada"
     ]
   },
+  {
+    id: 4,
+    title: "Sistema de Pagos - What time is it?",
+    description:
+      "Sistema de pagos para la academia de inglés 'What time is it?' Desarrollado con Next.js y Supabase (PostgreSQL). Implementa WebSockets para notificaciones en tiempo real, códigos QR en credenciales estudiantiles para escaneo rápido y aprobación de pagos desde el dashboard administrativo.",
+    image: "/images/login-ingles.png",
+    technologies: ["Tailwind CSS", "React", "Next.js", "Supabase", "PostgreSQL", "Socket.io"],
+    liveUrl: "https://ingles-frontend.vercel.app",
+    githubUrl: "https://github.com/Aaron0305",
+    showModal: true,
+    gallery: [
+      {
+        src: "/images/login-ingles.png",
+        alt: "Pantalla de inicio de sesión",
+        caption: "Login con diseño personalizado y mascota de la academia"
+      },
+      {
+        src: "/images/pagos-ingles.png",
+        alt: "Dashboard de pagos",
+        caption: "Panel de pagos con timeline mensual, filtros por estado y escaneo QR"
+      },
+      {
+        src: "/images/credenciales-ingles.png",
+        alt: "Gestión de credenciales",
+        caption: "Grid de credenciales estudiantiles con filtros por nivel y estado"
+      },
+      {
+        src: "/images/credencial-qr.png",
+        alt: "Credencial con código QR",
+        caption: "Credencial digital con QR para escaneo rápido, descarga en PDF y envío por WhatsApp"
+      },
+      {
+        src: "/images/estadisticas-ingles.png",
+        alt: "Reportes y estadísticas",
+        caption: "Gráficas de ingresos mensuales, distribución por nivel y reporte de pagos diarios"
+      },
+      {
+        src: "/images/administradores-ingles.png",
+        alt: "Gestión de administradores",
+        caption: "Panel de administración de usuarios con roles y permisos"
+      },
+      {
+        src: "/images/calendario-ingles.png",
+        alt: "Calendario escolar",
+        caption: "Calendario interactivo con días festivos, vacaciones y resumen mensual"
+      }
+    ],
+    features: [
+      "Autenticación segura con roles de administrador",
+      "Dashboard con estadísticas en tiempo real (274+ estudiantes)",
+      "Sistema de pagos con timeline mensual por estudiante",
+      "Credenciales digitales con código QR integrado",
+      "Escaneo de QR para aprobación rápida de pagos",
+      "Notificaciones en tiempo real con WebSockets",
+      "Reportes de ingresos con gráficas y exportación a Excel",
+      "Calendario escolar con días festivos personalizados",
+      "Gestión de administradores con permisos",
+      "Filtros avanzados: pendientes, parciales, vencidos",
+      "Descarga de credenciales en PDF y envío por WhatsApp",
+      "Clasificación de estudiantes por nivel (Beginner, Intermediate, Advanced)"
+    ]
+  },
 ];
 
 export default projects;

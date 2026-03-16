@@ -3,7 +3,7 @@ import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import { Link } from "next-view-transitions";
 
-const ProjectCard = ({ project, onOpenModal }) => {
+const ProjectCard = ({ project }) => {
   return (
     <CardContainer className="inter-var w-full h-full">
       <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-gray-800 dark:border-white/[0.2] border-black/[0.1] w-full min-h-[550px] rounded-xl p-6 border flex flex-col justify-between">
@@ -49,7 +49,19 @@ const ProjectCard = ({ project, onOpenModal }) => {
         </div>
 
         <div className="flex justify-between items-center gap-4 mt-4">
-          {project.liveUrl ? (
+          {project.showModal ? (
+            <CardItem
+              translateZ={20}
+              className="flex-1"
+            >
+              <Link
+                href={`/proyects/${project.id}`}
+                className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 px-4 rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm cursor-pointer shadow-lg hover:shadow-xl"
+              >
+                Explorar Proyecto
+              </Link>
+            </CardItem>
+          ) : project.liveUrl ? (
             <CardItem
               translateZ={20}
               as="a"
@@ -58,22 +70,21 @@ const ProjectCard = ({ project, onOpenModal }) => {
               rel="noopener noreferrer"
               className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 px-4 rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm cursor-pointer shadow-lg hover:shadow-xl"
             >
-              Ver Proyecto
+              Explorar Proyecto 
             </CardItem>
           ) : (
-            // Espacio vacío para mantener alineación si no hay botón izquierdo
             <div className="flex-1"></div>
           )}
 
           <CardItem
             translateZ={20}
             as="a"
-            href={project.githubUrl}
+            href={project.githubUrl || project.liveUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white text-center py-2.5 px-4 rounded-xl font-bold hover:border-blue-500 hover:text-blue-500 transition-all duration-300 text-sm cursor-pointer"
           >
-            GitHub
+            Link del Proyecto
           </CardItem>
         </div>
       </CardBody>

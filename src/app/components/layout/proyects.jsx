@@ -1,23 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import ProjectCard from "./ProjectCard";
 import projects from "./projectsData";
-import ModalProject from "./ModalProyect";
 
 const Proyects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = (project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedProject(null);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,17 +20,10 @@ const Proyects = () => {
             <ProjectCard
               key={project.id}
               project={project}
-              onOpenModal={() => handleOpenModal(project)}
             />
           ))}
         </div>
       </div>
-
-      <ModalProject
-        project={selectedProject}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
     </div>
   );
 };

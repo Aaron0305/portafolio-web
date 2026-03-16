@@ -37,14 +37,7 @@ html {
   width: 100vw;
 }
 
-.cube-transition-container {
-  /* Permite overflow para animaciones 3D del cubo */
-  overflow: visible !important;
-  width: 100vw;
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
+
 
 body::-webkit-scrollbar, html::-webkit-scrollbar {
   display: none; /* Chrome, Safari y Opera */
@@ -152,4 +145,52 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 
 .animate-slow-spin {
   animation: slow-spin 20s linear infinite;
+}
+
+/* Futuristic scan line for project detail page */
+@keyframes scan-line-move {
+  0% {
+    top: -2px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.animate-scan-line {
+  animation: scan-line-move 4s linear infinite;
+}
+
+/* View Transition animations - smooth morph effect */
+::view-transition-old(root) {
+  animation: page-fade-out 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  animation: page-fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: 0.05s;
+  z-index: 2;
+}
+
+@keyframes page-fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.98) translateY(-8px);
+  }
+}
+
+@keyframes page-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.01) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
