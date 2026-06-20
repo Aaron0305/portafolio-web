@@ -2,6 +2,7 @@
 import Image from "next/image";
 import SkillsCards from "./components/layout/cards";
 import CubeLayout from "./cube-layout";
+import GridDistortion from "./components/ui/GridDistortion";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, ReactNode, useEffect } from "react";
 import { Link } from 'next-view-transitions';
@@ -117,28 +118,28 @@ const ContactInfo = () => {
             href={item.href}
             target={item.href.startsWith('http') ? "_blank" : undefined}
             rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
-            className="flex items-center space-x-4 p-4 rounded-xl bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 group border border-gray-200 dark:border-gray-700"
+            className="flex items-center space-x-4 p-4 rounded-xl bg-white/5 backdrop-blur-md shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:bg-white/10 transition-all duration-300 group border border-white/10"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className={`w-12 h-12 bg-${item.color}-100 dark:bg-${item.color}-900 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-              <item.icon className={`w-6 h-6 text-${item.color}-600 dark:text-${item.color}-400`} />
+            <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:bg-white/20 transition-all duration-300">
+              <item.icon className="w-6 h-6 text-white" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-white">
                 {item.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 break-all">
+              <p className="text-gray-300 break-all">
                 {item.value}
               </p>
             </div>
-            <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300" />
+            <ExternalLink className="w-5 h-5 text-white/50 group-hover:text-white transition-colors duration-300" />
           </motion.a>
         ))}
       </div>
 
-      <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
+      <div className="pt-6 border-t border-white/10">
+        <h4 className="text-lg font-semibold text-white mb-4 text-center">
           Sígueme en redes sociales
         </h4>
         <div className="flex flex-wrap gap-3 justify-center">
@@ -148,7 +149,7 @@ const ContactInfo = () => {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`rounded-xl ${social.color} transition-all duration-300 p-3 shadow-md hover:shadow-lg flex items-center justify-center`}
+              className="rounded-xl bg-white/5 border border-white/10 hover:bg-white/20 transition-all duration-300 p-3 shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] flex items-center justify-center"
               aria-label={social.label}
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -426,19 +427,31 @@ export default function Home() {
         {/* Contact Section Completamente Renovado */}
         <AnimatedSection
           delay={0.6}
-          className="py-24 bg-white dark:bg-gray-800 relative overflow-hidden"
+          className="py-24 relative overflow-hidden"
+          style={{ background: '#000000' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-900/10 dark:to-purple-900/10"></div>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          {/* Fondo GridDistortion - Abstract Fluid Waves */}
+          <div className="absolute inset-0 z-0">
+            <GridDistortion
+              imageSrc="https://images.unsplash.com/photo-1604871000636-074fa5117945?q=80&w=2564&auto=format&fit=crop&sat=-100"
+              grid={15}
+              mouse={0.3}
+              strength={0.25}
+              relaxation={0.9}
+              className="opacity-80 grayscale contrast-125"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/30 via-transparent to-[#000000]/90 z-0 pointer-events-none"></div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pointer-events-none">
+            <div className="text-center mb-16 pointer-events-none">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Contactame
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Si te intereso mi perfil puedes contactarme a través de los siguientes medios:
               </p>
             </div>
-            <div className="max-w-2xl mx-auto space-y-12">
+            <div className="max-w-2xl mx-auto space-y-12 pointer-events-auto">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}

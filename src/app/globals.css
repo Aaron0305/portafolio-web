@@ -26,8 +26,10 @@ body {
   /* Permite scroll vertical pero oculta la barra */
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE y Edge */
 }
 
 html {
@@ -39,9 +41,12 @@ html {
 
 
 
-body::-webkit-scrollbar, html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Opera */
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari y Opera */
 }
+
 /* Gradiente radial para efectos de fondo */
 .bg-gradient-radial {
   background: radial-gradient(circle, var(--tw-gradient-stops));
@@ -49,9 +54,12 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 
 /* Animación de flotación para partículas */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -68,10 +76,13 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 
 /* Animación de brillo pulsante mejorada */
 @keyframes glow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: scale(1.05);
@@ -88,9 +99,11 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
     transform: translateX(-100%) skewX(-12deg);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translateX(200%) skewX(-12deg);
     opacity: 0;
@@ -109,12 +122,16 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 
 /* Animación de parpadeo suave para esquinas */
 @keyframes corner-blink {
-  0%, 90% {
+
+  0%,
+  90% {
     opacity: 0.6;
   }
+
   95% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.6;
   }
@@ -138,6 +155,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -152,6 +170,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   0% {
     top: -2px;
   }
+
   100% {
     top: 100%;
   }
@@ -178,6 +197,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: scale(0.98) translateY(-8px);
@@ -189,8 +209,24 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
     opacity: 0;
     transform: scale(1.01) translateY(12px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+/* Galaxy WebGL container styling */
+.galaxy-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* ShapeGrid Canvas styling */
+.shapegrid-canvas {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }

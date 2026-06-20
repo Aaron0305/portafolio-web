@@ -25,7 +25,12 @@ export default function ColourfulText({ text }: { text: string }) {
 
     return (
         <motion.span
-            className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 cursor-pointer"
+            className="inline-block text-transparent bg-clip-text cursor-pointer"
+            style={{
+                backgroundImage: "linear-gradient(to right, #2B2A4C, #B31312, #EA906C, #EEE2DE)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+            }}
             onHoverStart={handleHoverStart}
         >
             {letters.map((letter, index) => (
@@ -39,8 +44,8 @@ export default function ColourfulText({ text }: { text: string }) {
                     whileHover={
                         !isAnimating ? {
                             scale: 1.15,
-                            color: "#ec4899",
-                            textShadow: "0 0 25px rgba(236, 72, 153, 0.9)",
+                            color: "#EA906C",
+                            textShadow: "0 0 25px rgba(234, 144, 108, 0.9)",
                             transition: { duration: 0.1 },
                         } : undefined
                     }
@@ -48,11 +53,11 @@ export default function ColourfulText({ text }: { text: string }) {
                         isAnimating
                             ? {
                                 textShadow: [
-                                    "0 0 0px rgba(59, 130, 246, 0)",
-                                    "0 0 25px rgba(59, 130, 246, 1)",
-                                    "0 0 25px rgba(139, 92, 246, 1)",
-                                    "0 0 25px rgba(6, 182, 212, 1)",
-                                    "0 0 0px rgba(6, 182, 212, 0)",
+                                    "0 0 0px rgba(179, 19, 18, 0)",
+                                    "0 0 25px rgba(179, 19, 18, 1)",
+                                    "0 0 25px rgba(234, 144, 108, 1)",
+                                    "0 0 25px rgba(238, 226, 222, 1)",
+                                    "0 0 0px rgba(238, 226, 222, 0)",
                                 ],
                                 scale: [1, 1.08, 1],
                             }

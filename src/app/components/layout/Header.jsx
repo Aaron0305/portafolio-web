@@ -75,16 +75,12 @@ const Header = () => {
             >
               <motion.span
                 className={`
-                  relative z-10 block
-                  ${isScrolled
-                    ? 'text-gray-900 dark:text-white drop-shadow-[0_0_10px_rgba(6,182,212,0.7)]'
-                    : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400'
-                  }
+                  relative z-10 block text-[#24B1B1] drop-shadow-[0_0_10px_rgba(36,177,177,0.4)]
                 `}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                PORTAFOLIO
+                INICIO
               </motion.span>
             </Link>
           </div>
