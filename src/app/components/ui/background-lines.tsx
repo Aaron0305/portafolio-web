@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export const BackgroundLines = ({
@@ -9,9 +10,19 @@ export const BackgroundLines = ({
     children: React.ReactNode;
     className?: string;
 }) => {
+    const [shouldAnimate, setShouldAnimate] = useState(false);
+
+    useEffect(() => {
+        // Defer heavy SVG animations until after the view-transition
+        // has finished updating the DOM, preventing the browser from
+        // aborting the transition due to a main-thread timeout.
+        const timer = setTimeout(() => setShouldAnimate(true), 600);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className={`relative w-full h-full overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-700/50 dark:to-blue-900/20 ${className}`}>
-            <SVGBackground />
+            {shouldAnimate && <SVGBackground />}
             <div className="relative z-10 w-full h-full">{children}</div>
         </div>
     );

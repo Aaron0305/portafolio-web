@@ -416,7 +416,6 @@ export default function Home() {
                   >
                     <ProjectCard
                       project={project}
-                      onOpenModal={() => { }}
                     />
                   </motion.div>
                 ))}
