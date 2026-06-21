@@ -157,7 +157,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       vY: 0
     };
 
-    const handleMouseMove = e => {
+    const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1 - (e.clientY - rect.top) / rect.height;
