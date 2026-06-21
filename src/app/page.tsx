@@ -11,7 +11,12 @@ import { Link } from 'next-view-transitions';
 import ProjectCard from "./components/layout/ProjectCard";
 import projectsData from "./components/layout/projectsData";
 import ColourfulText from "./components/ui/colourful-text";
-import CodeEngineerScene from "./components/three/CodeEngineerScene";
+import dynamic from "next/dynamic";
+
+const RobotAvatar = dynamic(() => import("./components/three/RobotAvatar"), {
+  ssr: false,
+  loading: () => <div className="w-full h-[500px] flex items-center justify-center text-white/50">Iniciando sistema...</div>
+});
 import {
   Facebook,
   Instagram,
@@ -350,8 +355,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                {/* Sección de animación con three.js */}
-                <CodeEngineerScene />
+                {/* Sección de avatar 3D */}
+                <RobotAvatar />
               </motion.div>
             </div>
           </div>
