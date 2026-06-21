@@ -442,8 +442,7 @@ export default function Home() {
         {/* Contact Section Completamente Renovado */}
         <AnimatedSection
           delay={0.6}
-          className="py-24 relative overflow-hidden"
-          style={{ background: '#000000' }}
+          className="py-24 relative overflow-hidden bg-black"
         >
           {/* Fondo GridDistortion - Abstract Fluid Waves */}
           <div className="absolute inset-0 z-0">

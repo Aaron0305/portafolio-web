@@ -193,6 +193,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       uniforms.time.value += 0.05;
 
       const data = dataTexture.image.data;
+      if (!data) return;
       for (let i = 0; i < size * size; i++) {
         data[i * 4] *= relaxation;
         data[i * 4 + 1] *= relaxation;
@@ -243,7 +244,13 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       }
 
       if (planeRef.current && planeRef.current.geometry) planeRef.current.geometry.dispose();
-      if (planeRef.current && planeRef.current.material) planeRef.current.material.dispose();
+      if (planeRef.current && planeRef.current.material) {
+        if (Array.isArray(planeRef.current.material)) {
+          planeRef.current.material.forEach(m => m.dispose());
+        } else {
+          planeRef.current.material.dispose();
+        }
+      }
       if (uniforms.uDataTexture.value) uniforms.uDataTexture.value.dispose();
       if (uniforms.uTexture.value) uniforms.uTexture.value.dispose();
 
