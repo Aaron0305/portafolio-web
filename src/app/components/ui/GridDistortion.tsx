@@ -71,8 +71,8 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
     const uniforms = {
       time: { value: 0 },
       resolution: { value: new THREE.Vector4() },
-      uTexture: { value: null },
-      uDataTexture: { value: null }
+      uTexture: { value: null as THREE.Texture | null },
+      uDataTexture: { value: null as THREE.DataTexture | null }
     };
 
     const textureLoader = new THREE.TextureLoader();

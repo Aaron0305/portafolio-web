@@ -188,6 +188,7 @@ interface GalaxyProps {
   rotationSpeed?: number;
   autoCenterRepulsion?: number;
   transparent?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -235,6 +236,7 @@ export default function Galaxy({
       gl.clearColor(0, 0, 0, 1);
     }
 
+    // eslint-disable-next-line prefer-const
     let program: Program;
 
     function resize() {

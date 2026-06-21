@@ -1,12 +1,10 @@
 "use client";
 
-import { Magnet } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 
 interface AttractButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   particleCount?: number;
-  attractRadius?: number;
   text?: string;
 }
 
@@ -19,7 +17,6 @@ interface Particle {
 export default function AttractButton({
   className = "",
   particleCount = 12,
-  attractRadius = 50,
   text = "INICIO",
   ...props
 }: AttractButtonProps) {

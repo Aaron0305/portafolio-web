@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+
 
 import type { SVGProps } from "react";
 import { useEffect, useRef, useCallback } from "react";
