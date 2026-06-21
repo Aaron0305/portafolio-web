@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import AttractButton from "../ui/AttractButton";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -71,17 +72,9 @@ const Header = () => {
           <div className="relative group">
             <Link
               href="/"
-              className="relative text-2xl font-bold tracking-wider"
+              className="relative text-2xl font-bold tracking-wider block"
             >
-              <motion.span
-                className={`
-                  relative z-10 block text-[#24B1B1] drop-shadow-[0_0_10px_rgba(36,177,177,0.4)]
-                `}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                INICIO
-              </motion.span>
+              <AttractButton text="INICIO" />
             </Link>
           </div>
 

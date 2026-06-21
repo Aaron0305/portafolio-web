@@ -56,7 +56,7 @@ const ProjectCard = ({ project }) => {
             >
               <Link
                 href={`/proyects/${project.id}`}
-                className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 px-4 rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm cursor-pointer shadow-lg hover:shadow-xl"
+                className="block w-full bg-gradient-to-r from-[#EA906C] via-[#B31312] to-[#2B2A4C] text-white text-center py-3 px-4 rounded-xl font-bold transition-all duration-300 text-sm cursor-pointer shadow-lg hover:opacity-90 hover:shadow-[0_0_20px_rgba(234,144,108,0.4)]"
               >
                 Explorar Proyecto
               </Link>
@@ -68,7 +68,7 @@ const ProjectCard = ({ project }) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 px-4 rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm cursor-pointer shadow-lg hover:shadow-xl"
+              className="flex-1 bg-gradient-to-r from-[#EA906C] via-[#B31312] to-[#2B2A4C] text-white text-center py-3 px-4 rounded-xl font-bold transition-all duration-300 text-sm cursor-pointer shadow-lg hover:opacity-90 hover:shadow-[0_0_20px_rgba(234,144,108,0.4)]"
             >
               Explorar Proyecto 
             </CardItem>
@@ -82,7 +82,7 @@ const ProjectCard = ({ project }) => {
             href={project.githubUrl || project.liveUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white text-center py-2.5 px-4 rounded-xl font-bold hover:border-blue-500 hover:text-blue-500 transition-all duration-300 text-sm cursor-pointer"
+            className="flex-1 border-2 border-white/20 text-gray-300 text-center py-2.5 px-4 rounded-xl font-bold hover:border-[#EA906C] hover:text-[#EA906C] hover:bg-[#EA906C]/10 transition-all duration-300 text-sm cursor-pointer"
           >
             Link del Proyecto
           </CardItem>
