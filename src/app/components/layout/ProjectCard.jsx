@@ -6,18 +6,20 @@ import { Link } from "next-view-transitions";
 const ProjectCard = ({ project }) => {
   return (
     <CardContainer className="inter-var w-full h-full">
-      <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-gray-800 dark:border-white/[0.2] border-black/[0.1] w-full min-h-[550px] rounded-xl p-6 border flex flex-col justify-between">
+      <CardBody className="bg-white/5 border border-white/10 backdrop-blur-md relative group/card hover:shadow-2xl hover:shadow-purple-500/10 hover:border-white/20 w-full min-h-[550px] rounded-3xl p-6 flex flex-col justify-between transition-all duration-500 overflow-hidden">
+        {/* Brillo sutil de fondo en hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
         <div>
           <CardItem
             translateZ="50"
-            className="text-xl font-bold text-neutral-600 dark:text-white"
+            className="text-xl font-bold text-white relative z-10"
           >
             {project.title}
           </CardItem>
           <CardItem
             as="p"
             translateZ="60"
-            className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 line-clamp-3"
+            className="text-gray-400 text-sm max-w-sm mt-2 line-clamp-3 relative z-10"
           >
             {project.description}
           </CardItem>
@@ -39,7 +41,7 @@ const ProjectCard = ({ project }) => {
                 <CardItem
                   translateZ={40}
                   key={index}
-                  className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full"
+                  className="px-3 py-1.5 bg-white/5 border border-white/10 text-gray-300 text-xs rounded-full relative z-10 backdrop-blur-sm"
                 >
                   {tech}
                 </CardItem>

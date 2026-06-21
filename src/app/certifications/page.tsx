@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import CubeLayout from "../cube-layout";
 import { BackgroundLines } from "../components/ui/background-lines";
 import { CometCard } from "../components/ui/comet-card";
+import StarfieldBackground from "../components/ui/StarfieldBackground";
 
 export default function CertificationsPage() {
     const certifications = [
@@ -88,70 +89,72 @@ export default function CertificationsPage() {
 
     return (
         <CubeLayout>
-            <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-32 px-6">
-                <div className="max-w-7xl mx-auto">
+            <div className="min-h-screen bg-[#050505] relative overflow-hidden pt-32 px-6">
+                <StarfieldBackground />
+                <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white text-center">
+                        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white text-center">
                             Mis Certificaciones
                         </h1>
-                        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-center mb-16">
+                        <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-16">
                             Validación de mis conocimientos y habilidades técnicas
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {certifications.map((cert, index) => (
                                 <CometCard key={index}>
-                                    <div className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 flex flex-col">
+                                    <div className="group bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl hover:shadow-indigo-500/10 hover:border-white/20 transition-all duration-500 border border-white/10 flex flex-col relative">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                         <BackgroundLines className="h-48 flex items-center justify-center">
                                             <div className="text-center z-10">
                                                 {cert.issuer.includes("Google") ? (
-                                                    <div className="text-4xl font-bold text-gray-800 dark:text-white mb-2 tracking-tighter">
+                                                    <div className="text-4xl font-bold text-white mb-2 tracking-tighter">
                                                         <span className="text-blue-500">G</span>
                                                         <span className="text-red-500">o</span>
                                                         <span className="text-yellow-500">o</span>
                                                         <span className="text-blue-500">g</span>
                                                         <span className="text-green-500">l</span>
                                                         <span className="text-red-500">e</span>
-                                                        {cert.issuer === "Google Cloud" && <span className="text-gray-500 dark:text-gray-400 ml-2 text-2xl">Cloud</span>}
+                                                        {cert.issuer === "Google Cloud" && <span className="text-gray-400 ml-2 text-2xl">Cloud</span>}
                                                     </div>
                                                 ) : (
-                                                    <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2 tracking-tighter">
+                                                    <div className="text-4xl font-bold text-blue-400 mb-2 tracking-tighter">
                                                         CISCO
                                                     </div>
                                                 )}
-                                                <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest">Certificado</span>
+                                                <span className="text-xs font-medium text-gray-400 uppercase tracking-widest">Certificado</span>
                                             </div>
                                         </BackgroundLines>
-                                        <div className="p-6 flex-1 flex flex-col">
-                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                                        <div className="p-6 flex-1 flex flex-col relative z-10">
+                                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors line-clamp-2">
                                                 {cert.title}
                                             </h3>
-                                            <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+                                            <p className="text-gray-400 mb-4 text-sm">
                                                 {cert.issuer} • {cert.date}
                                             </p>
                                             <div className="flex flex-wrap gap-2 mb-6">
                                                 {cert.skills.slice(0, 4).map((skill, i) => (
-                                                    <span key={i} className="px-3 py-1 text-xs rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium">
+                                                    <span key={i} className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-gray-300 font-medium backdrop-blur-sm">
                                                         {skill}
                                                     </span>
                                                 ))}
                                                 {cert.skills.length > 4 && (
-                                                    <span className="px-3 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-medium">
+                                                    <span className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-gray-400 font-medium backdrop-blur-sm">
                                                         +{cert.skills.length - 4} más
                                                     </span>
                                                 )}
                                             </div>
 
-                                            <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
+                                            <div className="mt-auto pt-4 border-t border-white/10">
                                                 <a
                                                     href={cert.link}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                                                    className="inline-flex items-center text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
                                                 >
                                                     Ver Credencial
                                                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,7 +173,7 @@ export default function CertificationsPage() {
                                 href="https://www.credly.com/users/aaron-estrada-martinez"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
+                                className="inline-flex items-center px-8 py-4 bg-white/5 backdrop-blur-md text-white border border-white/10 rounded-xl font-bold shadow-lg hover:shadow-xl hover:shadow-orange-500/10 hover:border-white/20 hover:bg-white/10 hover:scale-105 transition-all duration-300 group"
                             >
                                 <span className="mr-3 text-orange-500">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">

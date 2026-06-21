@@ -170,7 +170,9 @@ export default function Skills() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Frontend Card */}
-          <div className="group rounded-3xl p-6 transition-all duration-300 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 backdrop-blur-sm">
+          <div className="group rounded-3xl p-6 transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl hover:shadow-purple-500/10 hover:border-white/20 hover:-translate-y-1 backdrop-blur-md relative overflow-hidden">
+            {/* Brillo sutil de fondo en hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="flex items-center justify-center mb-6">
               <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">Frontend</h3>
             </div>
@@ -178,12 +180,12 @@ export default function Skills() {
               {frontendSkills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="flex items-center gap-4 p-3 rounded-2xl transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 group/item"
+                  className="flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 hover:bg-white/10 group/item relative z-10"
                 >
                   <div className="transform transition-transform duration-300 group-hover/item:scale-110">
                     {skill.icon}
                   </div>
-                  <span className="font-medium text-gray-700 dark:text-gray-200 group-hover/item:text-blue-500 dark:group-hover/item:text-blue-400 transition-colors">
+                  <span className="font-medium text-gray-300 group-hover/item:text-white transition-colors">
                     {skill.name}
                   </span>
                 </div>
@@ -193,7 +195,8 @@ export default function Skills() {
 
 
           {/* Backend Card */}
-          <div className="group rounded-3xl p-6 transition-all duration-300 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 backdrop-blur-sm">
+          <div className="group rounded-3xl p-6 transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl hover:shadow-green-500/10 hover:border-white/20 hover:-translate-y-1 backdrop-blur-md relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="flex items-center justify-center mb-6">
               <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Backend</h3>
             </div>
@@ -201,12 +204,12 @@ export default function Skills() {
               {backendSkills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="flex items-center gap-4 p-3 rounded-2xl transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 group/item"
+                  className="flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 hover:bg-white/10 group/item relative z-10"
                 >
                   <div className="transform transition-transform duration-300 group-hover/item:scale-110">
                     {skill.icon}
                   </div>
-                  <span className="font-medium text-gray-700 dark:text-gray-200 group-hover/item:text-green-500 dark:group-hover/item:text-green-400 transition-colors">
+                  <span className="font-medium text-gray-300 group-hover/item:text-white transition-colors">
                     {skill.name}
                   </span>
                 </div>
@@ -216,7 +219,8 @@ export default function Skills() {
 
 
           {/* Learning Card */}
-          <div className="group rounded-3xl p-6 transition-all duration-300 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 backdrop-blur-sm">
+          <div className="group rounded-3xl p-6 transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl hover:shadow-orange-500/10 hover:border-white/20 hover:-translate-y-1 backdrop-blur-md relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="flex items-center justify-center mb-6">
               <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-300">Aprendiendo</h3>
             </div>
@@ -224,12 +228,12 @@ export default function Skills() {
               {learningSkills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="flex items-center gap-4 p-3 rounded-2xl transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 group/item"
+                  className="flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 hover:bg-white/10 group/item relative z-10"
                 >
                   <div className="transform transition-transform duration-300 group-hover/item:scale-110">
                     {skill.icon}
                   </div>
-                  <span className="font-medium text-gray-700 dark:text-gray-200 group-hover/item:text-orange-500 dark:group-hover/item:text-orange-400 transition-colors">
+                  <span className="font-medium text-gray-300 group-hover/item:text-white transition-colors">
                     {skill.name}
                   </span>
                 </div>
@@ -239,7 +243,8 @@ export default function Skills() {
 
 
           {/* Tools Card */}
-          <div className="group rounded-3xl p-6 transition-all duration-300 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 backdrop-blur-sm">
+          <div className="group rounded-3xl p-6 transition-all duration-500 bg-white/5 border border-white/10 shadow-2xl hover:shadow-indigo-500/10 hover:border-white/20 hover:-translate-y-1 backdrop-blur-md relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="flex items-center justify-center mb-6">
               <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300">Herramientas</h3>
             </div>
@@ -247,12 +252,12 @@ export default function Skills() {
               {tools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="flex flex-col items-center gap-2 p-3 rounded-2xl transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 group/item text-center"
+                  className="flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300 hover:bg-white/10 group/item text-center relative z-10"
                 >
                   <div className="transform transition-transform duration-300 group-hover/item:scale-110">
                     {tool.icon}
                   </div>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover/item:text-indigo-500 dark:group-hover/item:text-indigo-400 transition-colors">
+                  <span className="text-sm font-medium text-gray-300 group-hover/item:text-white transition-colors">
                     {tool.name}
                   </span>
                 </div>
